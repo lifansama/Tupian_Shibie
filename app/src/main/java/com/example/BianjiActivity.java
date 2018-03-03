@@ -28,6 +28,8 @@ import android.widget.TextView;
 import com.baidu.ocr.sdk.OCR;
 import com.baidu.ocr.sdk.OnResultListener;
 import com.baidu.ocr.sdk.exception.OCRError;
+import com.baidu.ocr.sdk.model.BankCardParams;
+import com.baidu.ocr.sdk.model.BankCardResult;
 import com.baidu.ocr.sdk.model.GeneralBasicParams;
 import com.baidu.ocr.sdk.model.GeneralParams;
 import com.baidu.ocr.sdk.model.GeneralResult;
@@ -227,8 +229,16 @@ public class BianjiActivity extends AppCompatActivity {
 
         gongju_onclick(findViewById(R.id.zhuashou_Id));
 
-        if (MainActivity.moshi == 3 || MainActivity.moshi == 4){
-            findViewById(R.id.xuxian_Id).setVisibility(View.GONE);
+        switch (MainActivity.moshi){
+            case 3:
+            case 4:
+                findViewById(R.id.xuxian_Id).setVisibility(View.GONE);
+                break;
+            case 5:
+                findViewById(R.id.xuxian_Id).setVisibility(View.GONE);
+                TextView fuzhi = findViewById(R.id.wenben_fuzhi_Id);
+                fuzhi.setText("复制卡号");
+                break;
         }
 
         setSystemUIVisible(false);
@@ -310,7 +320,8 @@ public class BianjiActivity extends AppCompatActivity {
                     tv.setEnabled(false);
 
                     final GeneralParams qingqiu = new GeneralParams();
-                    qingqiu.setDetectDirection(true);
+                    final BankCardParams yinhangka_qingqiu = new BankCardParams();
+
 
                     File file = new File(Environment.getExternalStorageDirectory().getPath() + "/M3h/hc/hc.jpg");
                     Bitmap tupian = huaban.getTupian();
@@ -320,7 +331,19 @@ public class BianjiActivity extends AppCompatActivity {
                         baocun.flush();
                         baocun.close();
 
-                        qingqiu.setImageFile(file);
+                        switch (MainActivity.moshi){
+                            case 0:
+                            case 1:
+                            case 2:
+                            case 3:
+                            case 4:
+                                qingqiu.setDetectDirection(true);
+                                qingqiu.setImageFile(file);
+                                break;
+                            case 5:
+                                yinhangka_qingqiu.setImageFile(file);
+                                break;
+                        }
 
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
@@ -570,6 +593,52 @@ public class BianjiActivity extends AppCompatActivity {
                                 }
                             });
                             break;
+                        case 5:
+                            // 调用银行卡识别服务
+                            OCR.getInstance().recognizeBankCard(yinhangka_qingqiu, new OnResultListener<BankCardResult>() {
+                                @Override
+                                public void onResult(BankCardResult result) {
+                                    String s = "";
+                                    if (!result.getBankName().equals("")){
+                                        s = result.getBankName();
+                                    }
+                                    if (!s.equals("")){
+                                        s = s+"\n";
+                                    }
+                                    switch (result.getBankCardType()){
+                                        case Debit:
+                                            s = s+"借记卡";
+                                            break;
+                                        case Credit:
+                                            s = s+"信用卡";
+                                            break;
+                                    }
+                                    if (!s.equals("")){
+                                        s = s + "\n";
+                                    }
+                                    if (!result.getBankCardNumber().equals("")){
+                                        s = s + "卡号："+result.getBankCardNumber();
+                                    }
+                                    gongju_onclick(findViewById(R.id.wenzi_Id));
+                                    EditText editText = findViewById(R.id.wenben_Id);
+                                    editText.setText(s);
+                                    tv.setText("开始识别");
+                                    tv.setEnabled(true);
+                                }
+                                @Override
+                                public void onError(OCRError error) {
+                                    Log.e("size",error.getMessage());
+                                    shibie_cuowu(error.getErrorCode());
+                                    tv.post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            tv.setText("开始识别");
+                                            tv.setEnabled(true);
+                                        }
+                                    });
+                                }
+                            });
+                            break;
                     }
                     file_clear(file,tupian);
                 }
@@ -581,10 +650,16 @@ public class BianjiActivity extends AppCompatActivity {
     public void wenben_xuanxiang(View view){
         EditText wenben = findViewById(R.id.wenben_Id);
         if (view.getId() == R.id.wenben_fuzhi_Id){
+            String wb = "";
+            if (MainActivity.moshi == 5){
+                wb = wenben.getText().toString();
+                wb = wb.substring(wb.indexOf("卡号：")+3,wb.length());
+            }else
+               wb = wenben.getText().toString();
             //获取剪贴板管理器：
             ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
             // 创建普通字符型ClipData
-            ClipData mClipData = ClipData.newPlainText("ShiBie", wenben.getText().toString());
+            ClipData mClipData = ClipData.newPlainText("ShiBie", wb);
             // 将ClipData内容放到系统剪贴板里。
             cm.setPrimaryClip(mClipData);
         }else {
@@ -654,6 +729,9 @@ public class BianjiActivity extends AppCompatActivity {
             case 3:
                 layout = getLayoutInflater().inflate(R.layout.saomiao_shezhi, gongju_shezhilan,false);
                 gongju_shezhilan.addView(layout);
+                if (MainActivity.moshi == 5){
+                    layout.findViewById(R.id.saomiao_yuyan_layout_Id).setVisibility(View.GONE);
+                }
 
                 List<String> wenzifangxiang = new ArrayList<>();
                 switch (MainActivity.moshi){

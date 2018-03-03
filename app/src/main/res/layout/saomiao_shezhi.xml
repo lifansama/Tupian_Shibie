@@ -5,23 +5,32 @@
     android:background="@color/colorPrimary"
     android:orientation="horizontal">
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/saomiao_yuyan_layout_Id"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text="语言"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        android:gravity="center_vertical"
-        android:alpha="0.85"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"/>
+        android:layout_height="match_parent">
 
-    <Spinner
-        android:id="@+id/saomiao_yuyan_Id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:popupBackground="@color/colorPrimary"></Spinner>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="语言"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:gravity="center_vertical"
+            android:alpha="0.85"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"/>
+
+        <Spinner
+            android:id="@+id/saomiao_yuyan_Id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:popupBackground="@color/colorPrimary"></Spinner>
+
+    </LinearLayout>
+
+
 
     <TextView
         android:id="@+id/kaishi_shibie_Id"

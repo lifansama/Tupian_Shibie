@@ -196,6 +196,45 @@
 
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#000000"
+            android:paddingRight="16dp"
+            android:paddingLeft="16dp"
+            android:alpha="0.3"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"/>
+
+        <LinearLayout
+            android:id="@+id/yinhangka_shibie_Id"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:background="@drawable/sbw"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:onClick="leixing">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="银行卡识别"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:alpha="0.85"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="每日次数：500"
+                android:textSize="13sp"
+                android:textColor="#000000"
+                android:alpha="0.85"/>
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </ScrollView>
