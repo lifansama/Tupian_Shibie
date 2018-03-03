@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.BianjiActivity">
+
+    <com.example.My_huabu
+        android:id="@+id/huabu_Id"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/gongjulan_layout_Id"
+            android:layout_width="82dp"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            android:layout_alignParentLeft="true"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/gongjulan_Id"
+                android:layout_width="56dp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/zhuashou_Id"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:onClick="gongju_onclick"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_zhuashou" />
+
+                <ImageView
+                    android:id="@+id/xuxian_Id"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:onClick="gongju_onclick"
+                    android:padding="14dp"
+                    android:src="@drawable/ic_xuxian" />
+
+                <ImageView
+                    android:id="@+id/wenzi_Id"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:onClick="gongju_onclick"
+                    android:padding="14dp"
+                    android:src="@drawable/ic_wenzi" />
+
+                <ImageView
+                    android:id="@+id/saomiao_Id"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:onClick="gongju_onclick"
+                    android:padding="14dp"
+                    android:src="@drawable/ic_saomiao" />
+
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/gongjulan_kaiguan_Id"
+                android:layout_width="26dp"
+                android:layout_height="40dp"
+                android:background="@drawable/yuan"
+                android:padding="6dp"
+                android:src="@drawable/ic_zuo"
+                android:onClick="gongjulan_kg"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/wenzi_fu_gongju_Id"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.3"
+            android:orientation="vertical"
+            android:background="@color/colorPrimary"
+            android:visibility="gone"
+            android:onClick="kong">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/wenben_fuzhi_Id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.85"
+                    android:background="@drawable/sbw"
+                    android:padding="8dp"
+                    android:text="复制"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:onClick="wenben_xuanxiang"/>
+
+                <TextView
+                    android:id="@+id/wenben_fenxiang_Id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:alpha="0.85"
+                    android:background="@drawable/sbw"
+                    android:padding="8dp"
+                    android:text="分享"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:onClick="wenben_xuanxiang"/>
+
+            </RelativeLayout>
+
+            <EditText
+                android:id="@+id/wenben_Id"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.85"
+                android:background="@drawable/wenbenkuang"
+                android:gravity="top"
+                android:padding="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:singleLine="false"
+                android:textColor="#FFFFFF" />
+
+        </LinearLayout>
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/gongju_shezhilan_Id"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true">
+
+    </LinearLayout>
+
+</RelativeLayout>

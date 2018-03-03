@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:background="@color/colorPrimary"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/fuwu_Id"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="复位"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:gravity="center_vertical"
+        android:alpha="0.85"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:background="@drawable/sbw"
+        android:onClick="gongju_shezhi"/>
+
+    <TextView
+        android:id="@+id/shihepingmu_Id"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="适合屏幕"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:gravity="center_vertical"
+        android:alpha="0.85"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:background="@drawable/sbw"
+        android:onClick="gongju_shezhi"/>
+
+    <TextView
+        android:id="@+id/tianchongpingmu_Id"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="填充屏幕"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:gravity="center_vertical"
+        android:alpha="0.85"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:background="@drawable/sbw"
+        android:onClick="gongju_shezhi"/>
+
+    <TextView
+        android:id="@+id/xuanzhuan_Id"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="旋转"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:gravity="center_vertical"
+        android:alpha="0.85"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:background="@drawable/sbw"
+        android:onClick="gongju_shezhi"/>
+
+
+
+</LinearLayout>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.GuanyuActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/sbw"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:onClick="kong">
+
+        <TextView
+            android:id="@+id/banbenhao_Id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:alpha="0.85"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000000"
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp"
+        android:alpha="0.3"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:background="@drawable/sbw"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:onClick="kong">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="作者：萌虎大河"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:alpha="0.85"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="qq:1012878903"
+            android:textSize="13sp"
+            android:textColor="#000000"
+            android:alpha="0.85"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="感谢"
+        android:textColor="#000000"
+        android:alpha="0.85"
+        android:textSize="24sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:background="@drawable/sbw"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:onClick="kong">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="百度OCR"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:alpha="0.85"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="本app图像识别功能来源于此"
+            android:textSize="13sp"
+            android:textColor="#000000"
+            android:alpha="0.85"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000000"
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp"
+        android:alpha="0.3"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:background="@drawable/sbw"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:onClick="kong">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="阿里巴巴矢量图标库"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:alpha="0.85"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="本app所有图标都来源于此"
+            android:textSize="13sp"
+            android:textColor="#000000"
+            android:alpha="0.85"/>
+
+    </LinearLayout>
+
+</LinearLayout>

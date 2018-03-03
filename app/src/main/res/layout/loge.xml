@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:gravity="center"
+    android:background="@color/colorPrimary">
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/ak_Id"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:hint="API Key"
+            android:textColor="#FFFFFF"
+            android:alpha="0.85"
+            android:singleLine="true"
+            android:digits="1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"
+            android:maxLength="30"/>
+        
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/sk_Id"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:hint="Secret Key"
+            android:textColor="#FFFFFF"
+            android:alpha="0.85"
+            android:singleLine="true"
+            android:digits="1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"
+            android:maxLength="40"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/tuichu_Id"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="退出"
+            android:background="?android:attr/selectableItemBackground"
+            android:textColor="@color/colorAccent"
+            android:onClick="Loge_onclick"/>
+
+        <Button
+            android:id="@+id/denglu_Id"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="登陆"
+            android:background="?android:attr/selectableItemBackground"
+            android:textColor="@color/colorAccent"
+            android:layout_alignParentRight="true"
+            android:onClick="Loge_onclick"/>
+    </RelativeLayout>
+
+</LinearLayout>

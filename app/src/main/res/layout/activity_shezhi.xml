@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.ShezhiActivity">
+
+    <LinearLayout
+        android:id="@+id/shezhi_genghuan_key_Id"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:background="@drawable/sbw"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:onClick="shezhi_onclick">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="更换Key"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:alpha="0.85"/>
+
+        <TextView
+            android:id="@+id/API_key_Id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:textColor="#000000"
+            android:alpha="0.85"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000000"
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp"
+        android:alpha="0.3"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/sbw"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="默认搜索语言"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:alpha="0.85"/>
+
+        <Spinner
+            android:id="@+id/shezhi_morenyuyan_Id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></Spinner>
+
+    </LinearLayout>
+
+</LinearLayout>
