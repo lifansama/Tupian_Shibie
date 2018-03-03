@@ -77,6 +77,7 @@ public class BianjiActivity extends AppCompatActivity {
     //记录为带位置识别图片时的手指点击坐标
     private float weizhi_x= 0;
     private float weizhi_y = 0;
+    private int ceshi = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
