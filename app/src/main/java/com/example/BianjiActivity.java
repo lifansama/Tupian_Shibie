@@ -33,6 +33,8 @@ import com.baidu.ocr.sdk.model.BankCardResult;
 import com.baidu.ocr.sdk.model.GeneralBasicParams;
 import com.baidu.ocr.sdk.model.GeneralParams;
 import com.baidu.ocr.sdk.model.GeneralResult;
+import com.baidu.ocr.sdk.model.IDCardParams;
+import com.baidu.ocr.sdk.model.IDCardResult;
 import com.baidu.ocr.sdk.model.Location;
 import com.baidu.ocr.sdk.model.Word;
 import com.baidu.ocr.sdk.model.WordSimple;
@@ -229,6 +231,7 @@ public class BianjiActivity extends AppCompatActivity {
 
         gongju_onclick(findViewById(R.id.zhuashou_Id));
 
+        TextView fuzhi;
         switch (MainActivity.moshi){
             case 3:
             case 4:
@@ -236,8 +239,13 @@ public class BianjiActivity extends AppCompatActivity {
                 break;
             case 5:
                 findViewById(R.id.xuxian_Id).setVisibility(View.GONE);
-                TextView fuzhi = findViewById(R.id.wenben_fuzhi_Id);
+                fuzhi = findViewById(R.id.wenben_fuzhi_Id);
                 fuzhi.setText("复制卡号");
+                break;
+            case 6:
+                findViewById(R.id.xuxian_Id).setVisibility(View.GONE);
+                fuzhi = findViewById(R.id.wenben_fuzhi_Id);
+                fuzhi.setText("复制身份证号");
                 break;
         }
 
@@ -321,6 +329,7 @@ public class BianjiActivity extends AppCompatActivity {
 
                     final GeneralParams qingqiu = new GeneralParams();
                     final BankCardParams yinhangka_qingqiu = new BankCardParams();
+                    final IDCardParams shenfenzheng_qingqiu = new IDCardParams();
 
 
                     File file = new File(Environment.getExternalStorageDirectory().getPath() + "/M3h/hc/hc.jpg");
@@ -342,6 +351,11 @@ public class BianjiActivity extends AppCompatActivity {
                                 break;
                             case 5:
                                 yinhangka_qingqiu.setImageFile(file);
+                                break;
+                            case 6:
+                                shenfenzheng_qingqiu.setImageFile(file);
+                                shenfenzheng_qingqiu.setDetectDirection(true);
+                                shenfenzheng_qingqiu.setIdCardSide(IDCardParams.ID_CARD_SIDE_FRONT);
                                 break;
                         }
 
@@ -639,6 +653,67 @@ public class BianjiActivity extends AppCompatActivity {
                                 }
                             });
                             break;
+                        case 6:
+                            // 调用身份证识别服务
+                            OCR.getInstance().recognizeIDCard(shenfenzheng_qingqiu, new OnResultListener<IDCardResult>() {
+                                @Override
+                                public void onResult(IDCardResult result) {
+                                    String s = "";
+                                    List<String> xinxi = new ArrayList<>();
+                                    xinxi.add(result.getName().toString());
+                                    xinxi.add(result.getGender().toString());
+                                    xinxi.add(result.getEthnic().toString());
+                                    xinxi.add(result.getBirthday().toString());
+                                    xinxi.add(result.getAddress().toString());
+                                    xinxi.add(result.getIdNumber().toString());
+                                    int i = 0;
+                                    for (String xx : xinxi){
+                                        if (!s.equals("")){
+                                            s = s + "\n";
+                                        }
+                                        switch (i){
+                                            case 0:
+                                                s = s + "姓名：" +xx;
+                                                break;
+                                            case 1:
+                                                s = s + "性别：" +xx;
+                                                break;
+                                            case 2:
+                                                s = s + "民族：" +xx;
+                                                break;
+                                            case 3:
+                                                s = s + "出生：" +xx;
+                                                break;
+                                            case 4:
+                                                s = s + "住址：" +xx;
+                                                break;
+                                            case 5:
+                                                s = s + "身份证号：" +xx;
+                                                break;
+                                        }
+
+                                        i++;
+                                    }
+                                    gongju_onclick(findViewById(R.id.wenzi_Id));
+                                    EditText editText = findViewById(R.id.wenben_Id);
+                                    editText.setText(s);
+                                    tv.setText("开始识别");
+                                    tv.setEnabled(true);
+                                }
+                                @Override
+                                public void onError(OCRError error) {
+                                    Log.e("size",error.getMessage());
+                                    shibie_cuowu(error.getErrorCode());
+                                    tv.post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            tv.setText("开始识别");
+                                            tv.setEnabled(true);
+                                        }
+                                    });
+                                }
+                            });
+                            break;
                     }
                     file_clear(file,tupian);
                 }
@@ -649,13 +724,30 @@ public class BianjiActivity extends AppCompatActivity {
 
     public void wenben_xuanxiang(View view){
         EditText wenben = findViewById(R.id.wenben_Id);
+        if (wenben.getText().toString().length() == 0){
+            Snackbar.make(huaban,"没有内容",Snackbar.LENGTH_LONG).show();
+            return;
+        }
         if (view.getId() == R.id.wenben_fuzhi_Id){
             String wb = "";
-            if (MainActivity.moshi == 5){
-                wb = wenben.getText().toString();
-                wb = wb.substring(wb.indexOf("卡号：")+3,wb.length());
-            }else
-               wb = wenben.getText().toString();
+            wb = wenben.getText().toString();
+            switch (MainActivity.moshi){
+                case 5:
+                    if (wb.indexOf("卡号：") == -1){
+                        Snackbar.make(huaban,"没有找到卡号！",Snackbar.LENGTH_LONG).show();
+                        return;
+                    }
+                    wb = wb.substring(wb.indexOf("卡号：")+3,wb.length());
+                    break;
+                case 6:
+                    if (wb.indexOf("身份证号：") == -1){
+                        Snackbar.make(huaban,"没有找到身份证号！",Snackbar.LENGTH_LONG).show();
+                        return;
+                    }
+                    wb = wb.substring(wb.indexOf("身份证号：")+5,wb.length());
+                    break;
+            }
+
             //获取剪贴板管理器：
             ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
             // 创建普通字符型ClipData
@@ -729,8 +821,11 @@ public class BianjiActivity extends AppCompatActivity {
             case 3:
                 layout = getLayoutInflater().inflate(R.layout.saomiao_shezhi, gongju_shezhilan,false);
                 gongju_shezhilan.addView(layout);
-                if (MainActivity.moshi == 5){
-                    layout.findViewById(R.id.saomiao_yuyan_layout_Id).setVisibility(View.GONE);
+                switch (MainActivity.moshi){
+                    case 5:
+                    case 6:
+                        layout.findViewById(R.id.saomiao_yuyan_layout_Id).setVisibility(View.GONE);
+                        break;
                 }
 
                 List<String> wenzifangxiang = new ArrayList<>();

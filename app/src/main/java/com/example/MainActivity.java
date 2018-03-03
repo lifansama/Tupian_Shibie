@@ -175,6 +175,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.yinhangka_shibie_Id:
                 moshi = 5;
                 break;
+            case R.id.shenfenzheng_shibie_Id:
+                moshi = 6;
+                break;
         }
         Tuku();
     }
