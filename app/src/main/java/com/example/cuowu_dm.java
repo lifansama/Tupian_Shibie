@@ -67,6 +67,30 @@ public class cuowu_dm {
             case 283700:
                 dm = "服务器内部错误";
                 break;
+
+            case 216600:
+                dm = "身份证的ID格式错误";
+                break;
+            case 216601:
+                dm = "身份证的ID和名字不匹配";
+                break;
+            case 216630:
+                dm = "识别错误";
+                break;
+
+            case 216631:
+                dm = "检测不到银行卡";
+                break;
+            case 216633:
+                dm = "检测不到身份证";
+                break;
+
+            case 216632:
+                dm = "unknown error";
+                break;
+            case 216634:
+                dm = "检测错误";
+                break;
         }
         return dm;
     }
