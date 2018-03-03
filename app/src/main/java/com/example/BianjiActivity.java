@@ -364,15 +364,13 @@ public class BianjiActivity extends AppCompatActivity {
                                 public void onResult(GeneralResult generalResult) {
                                     Log.e("请求：","成功");
                                     String s = "";
-                                    int wz = 0;
                                     for (WordSimple wordSimple : generalResult.getWordList()) {
                                         // wordSimple不包含位置信息
                                         WordSimple word = wordSimple;
-                                        if (wz != 0){
+                                        if (!s.equals("")){
                                             s = s+"\n";
                                         }
                                         s = s + word.getWords();
-                                        wz++;
                                     }
                                     gongju_onclick(findViewById(R.id.wenzi_Id));
                                     EditText editText = findViewById(R.id.wenben_Id);
@@ -403,15 +401,13 @@ public class BianjiActivity extends AppCompatActivity {
                                 public void onResult(GeneralResult generalResult) {
                                     Log.e("请求：","成功");
                                     String s = "";
-                                    int wz = 0;
                                     for (WordSimple wordSimple : generalResult.getWordList()) {
                                         // wordSimple不包含位置信息
                                         WordSimple word = wordSimple;
-                                        if (wz != 0){
+                                        if (!s.equals("")){
                                             s = s+"\n";
                                         }
                                         s = s + word.getWords();
-                                        wz++;
                                     }
                                     gongju_onclick(findViewById(R.id.wenzi_Id));
                                     EditText editText = findViewById(R.id.wenben_Id);
@@ -440,15 +436,13 @@ public class BianjiActivity extends AppCompatActivity {
                                 public void onResult(GeneralResult generalResult) {
                                     Log.e("请求：","成功");
                                     String s = "";
-                                    int wz = 0;
                                     for (WordSimple wordSimple : generalResult.getWordList()) {
                                         // wordSimple不包含位置信息
                                         WordSimple word = wordSimple;
-                                        if (wz != 0){
+                                        if (!s.equals("")){
                                             s = s+"\n";
                                         }
                                         s = s + word.getWords();
-                                        wz++;
                                     }
                                     gongju_onclick(findViewById(R.id.wenzi_Id));
                                     EditText editText = findViewById(R.id.wenben_Id);
@@ -477,7 +471,6 @@ public class BianjiActivity extends AppCompatActivity {
                                 @Override
                                 public void onResult(GeneralResult generalResult) {
                                     String s = "";
-                                    int wz = 0;
                                     List<List<Integer>> wenzi_wz = new ArrayList<>();
                                     float wd = huaban.getTupian_width();
                                     float he = huaban.getTupian_height();
@@ -496,13 +489,11 @@ public class BianjiActivity extends AppCompatActivity {
                                         wz_wz.add((int)(location.getHeight() / beilv));
                                         wz_wz.add(0);
                                         wenzi_wz.add(wz_wz);
-                                        if (wz != 0){
+                                        if (!s.equals("")){
                                             s = s+"\n";
                                         }
                                         s = s + word.getWords();
                                         shibie_wenben.add(word.getWords());
-
-                                        wz++;
                                     }
                                     huaban.setWenzi_wz(wenzi_wz);
                                     gongju_onclick(findViewById(R.id.wenzi_Id));
@@ -528,11 +519,11 @@ public class BianjiActivity extends AppCompatActivity {
                             break;
                         case 4:
                             qingqiu.setVertexesLocation(true);
+                            qingqiu.setRecognizeGranularity(GeneralParams.GRANULARITY_SMALL);
                             OCR.getInstance().recognizeGeneral(qingqiu, new OnResultListener<GeneralResult>() {
                                 @Override
                                 public void onResult(GeneralResult generalResult) {
                                     String s = "";
-                                    int wz = 0;
                                     List<List<Integer>> wenzi_wz = new ArrayList<>();
                                     float wd = huaban.getTupian_width();
                                     float he = huaban.getTupian_height();
@@ -551,13 +542,11 @@ public class BianjiActivity extends AppCompatActivity {
                                         wz_wz.add((int)(location.getHeight() / beilv));
                                         wz_wz.add(0);
                                         wenzi_wz.add(wz_wz);
-                                        if (wz != 0){
+                                        if (!s.equals("")){
                                             s = s+"\n";
                                         }
                                         s = s + word.getWords();
                                         shibie_wenben.add(word.getWords());
-
-                                        wz++;
                                     }
                                     huaban.setWenzi_wz(wenzi_wz);
                                     gongju_onclick(findViewById(R.id.wenzi_Id));
@@ -586,7 +575,6 @@ public class BianjiActivity extends AppCompatActivity {
                 }
                 break;
         }
-
 
     }
 
